@@ -46,7 +46,7 @@ export const requestTestAudioUpload = createServerFn({ method: "POST" })
 export const submitTestContribution = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: unknown) => d)
-  .handler(async ({ data, context }) => { await assertAdmin(context); return saveSubmission(data, context.userId); });
+  .handler(async ({ data, context }) => { await assertAdmin(context); return saveSubmission(data, context.userId, context.supabase); });
 
 export const listTestSubmissions = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

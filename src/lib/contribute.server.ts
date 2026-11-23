@@ -31,7 +31,7 @@ export async function issueUploadUrl() {
 }
 
 /** Validates, checks audio content, then saves atomically. adminId set => forced test submission. */
-export async function saveSubmission(raw: unknown, adminId: string | null) {
+export async function saveSubmission(raw: unknown, adminId: string | null, rpcClient?: any) {
   const input = validateSubmission(raw);
   const db = await admin();
   let audio: { mime: string; size: number } | null = null;
@@ -45,7 +45,8 @@ export async function saveSubmission(raw: unknown, adminId: string | null) {
   }
 
   const code = newWithdrawalCode();
-  const { error } = await db.rpc("submit_contribution", {
+  const rpcDb = rpcClient ?? db;
+  const { error } = await rpcDb.rpc("submit_contribution", {
     p_type: input.type,
     p_payload: input.payload as never,
     p_audio_path: input.audioPath ?? (null as never),
