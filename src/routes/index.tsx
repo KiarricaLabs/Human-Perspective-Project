@@ -31,6 +31,7 @@ function Index() {
         <div className="mt-10 flex flex-wrap gap-3">
           <Link to="/contribute" className="rounded-md bg-primary px-6 py-3 font-medium text-primary-foreground hover:bg-primary/90">Learn how to contribute</Link>
           <Link to="/about" className="rounded-md border border-primary/30 px-6 py-3 font-medium text-primary hover:bg-secondary">About the research</Link>
+          <Link to="/donate" className="rounded-md border border-primary/30 px-6 py-3 font-medium text-primary hover:bg-secondary">Donate</Link>
         </div>
       </section>
 
