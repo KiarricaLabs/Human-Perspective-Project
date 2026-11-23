@@ -22,7 +22,8 @@ function checked<T>(result: { data: T; error: { message: string } | null }): T {
 export const researchWorkspace = createServerFn({ method: 'GET' }).middleware([requireSupabaseAuth]).handler(async ({ context }) => {
   await authorize(context);
   setResponseHeader('Cache-Control', 'private, no-store');
-  const db = context.supabase;
+  const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const db = supabaseAdmin;
   const results = await Promise.all([
     db.from('submissions').select('id,type,payload,status,is_test,created_at,audio_mime').order('created_at', { ascending: false }),
     db.from('consent_records').select('*').order('seq', { ascending: false }),
