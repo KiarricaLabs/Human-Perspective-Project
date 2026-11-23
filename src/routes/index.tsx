@@ -21,7 +21,7 @@ function Index() {
     <>
       <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:pt-28">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Independent research initiative</p>
-        <h1 className="mt-6 max-w-4xl text-5xl leading-[1.05] text-primary md:text-7xl">
+        <h1 className="mt-6 max-w-4xl text-4xl leading-[1.05] text-primary md:text-6xl">
           Black voices. Human experiences. The future of AI.
         </h1>
         <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
@@ -37,7 +37,7 @@ function Index() {
       <section className="border-y border-border bg-card">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-3">
           <div><h2 className="text-2xl text-primary">Independent</h2><p className="mt-3 text-muted-foreground">Not funded, sponsored, or operated by a major technology company.</p></div>
-          <div><h2 className="text-2xl text-primary">Community-centered</h2><p className="mt-3 text-muted-foreground">Research aimed at advancing AI for Black communities — and opening doors for Black researchers, developers, and engineers.</p></div>
+          <div><h2 className="text-2xl text-primary">Community-centered</h2><p className="mt-3 text-muted-foreground">Research centered on Black experiences, perspectives, and interests in the evolving relationship between people and artificial intelligence.</p></div>
           <div><h2 className="text-2xl text-primary">Consent first</h2><p className="mt-3 text-muted-foreground">Every use of your contribution is a separate choice. Nothing is used for AI training unless you say yes.</p></div>
         </div>
       </section>

@@ -144,7 +144,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
-      <Link to="/donate" className="fixed bottom-6 left-6 z-50 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg hover:bg-primary/90">Donate</Link>
+      <Link to="/donate" className="fixed bottom-6 left-6 z-50 hidden rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg hover:bg-primary/90 md:block">Donate</Link>
     </QueryClientProvider>
   );
 }
