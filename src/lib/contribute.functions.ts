@@ -27,7 +27,7 @@ export const submitContribution = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => d)
   .handler(async ({ data }) => saveSubmission(data, null));
 
-async function assertAdmin(ctx: { supabase: SupabaseClient<Database>; userId: string }) {
+async function assertAdmin(ctx: { supabase: SupabaseClient<Database>; userId: string; claims?: any }) {
   const { data, error } = await ctx.supabase.rpc("has_role", { _user_id: ctx.userId, _role: "admin" });
   if (error || !data) throw new Error("Forbidden");
 }
@@ -46,7 +46,7 @@ export const requestTestAudioUpload = createServerFn({ method: "POST" })
 export const submitTestContribution = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: unknown) => d)
-  .handler(async ({ data, context }) => { await assertAdmin(context); return saveSubmission(data, context.userId, context.supabase); });
+  .handler(async ({ data, context }) => { await assertAdmin(context); return saveSubmission(data, context.userId); });
 
 export const listTestSubmissions = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

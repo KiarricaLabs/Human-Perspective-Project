@@ -12,6 +12,7 @@ import {
 } from "@/lib/contribution-rules";
 import { requestAudioUpload, requestTestAudioUpload, submitContribution, submitTestContribution } from "@/lib/contribute.functions";
 import { VoiceDictation } from "./voice-dictation";
+import { AudioRecorder } from "./audio-recorder";
 
 type Wording = {
   id: string; version_label: string; eligibility_text: string; research_analysis_text: string; audio_text: string;
@@ -128,8 +129,10 @@ export function ContributionForm({ type, wording, mode, open, onSaved }: { type:
           </fieldset>
         </>)}
         {type === "voice" && (<>
-          <Field id="audio" label="Audio file" hint="mp3, m4a, wav or webm. 10 MB max. Stored privately.">
+          <Field id="audio" label="Audio file" hint="mp3, m4a, wav or webm. 10 MB max. Stored privately. Or record below.">
             <Input id="audio" type="file" accept=".mp3,.m4a,.wav,.webm,audio/*" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
+            <div className="mt-2"><AudioRecorder onFile={setFile} /></div>
+            {file && <p className="mt-1 text-xs text-muted-foreground">Selected: {file.name}</p>}
           </Field>
           <Field id="description" label="Short description (optional)"><Textarea id="description" maxLength={1000} value={p.description ?? ""} onChange={(e) => set("description", e.target.value)} /></Field>
           <Field id="language_notes" label="Spoken language or dialect notes (optional)"><Input id="language_notes" maxLength={500} value={p.language_notes ?? ""} onChange={(e) => set("language_notes", e.target.value)} /></Field>
