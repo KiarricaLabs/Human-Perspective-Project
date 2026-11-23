@@ -32,6 +32,7 @@ function AuthPage() {
         <div><Label htmlFor="password">Password</Label><Input id="password" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required /></div>
         {err && <p role="alert" className="text-sm text-destructive">{err}</p>}
         <Button type="submit" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</Button>
+      <Button type="button" variant="outline" disabled={busy} onClick={async () => { setBusy(true); const { error } = await supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: `${window.location.origin}/auth` } }); if (error) { setErr(error.message); setBusy(false); } }}>Sign in with Google</Button>
         <Link to="/set-password" className="block text-sm text-primary underline">Set or reset your password</Link>
       </form>
     </>
