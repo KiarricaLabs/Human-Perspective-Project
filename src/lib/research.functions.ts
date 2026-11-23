@@ -57,7 +57,8 @@ export const processWithdrawal = createServerFn({ method: 'POST' }).middleware([
 });
 export const toggleSubmissions = createServerFn({ method: 'POST' }).middleware([requireSupabaseAuth]).inputValidator(z.object({ open: z.boolean() })).handler(async ({ data, context }) => {
   await authorize(context);
-  checked(await context.supabase.from('app_settings').update({ value: data.open }).eq('key', 'submissions_open'));
+  const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+  checked(await supabaseAdmin.from('app_settings').update({ value: data.open }).eq('key', 'submissions_open'));
   return { ok: true };
 });
 export const createExport = createServerFn({ method: 'POST' }).middleware([requireSupabaseAuth]).inputValidator(z.object({ purpose: purposeSchema, notes: z.string().trim().max(2000), ids: z.array(z.string().uuid()).min(1).max(100) })).handler(async ({ data, context }) => {
