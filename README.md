@@ -8,3 +8,4 @@ TanStack Start + Supabase app.
 bun install
 bun run dev
 ```
+# deploy
