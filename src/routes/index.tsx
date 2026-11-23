@@ -56,6 +56,19 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-12">
+        <div className="rounded-lg border border-border bg-card p-8 md:p-12">
+          <h2 className="text-2xl text-primary md:text-3xl">A note to our community</h2>
+          <div className="mt-4 max-w-3xl space-y-3 text-foreground/85">
+            <p>You don't have to be an expert to have a perspective.</p>
+            <p>You don't have to love AI. You don't have to understand how it works. You don't even have to use it.</p>
+            <p>Maybe you've experienced it changing your industry. Maybe you're concerned about your children's future. Maybe you're an artist protecting your creativity, or someone who simply has questions about where technology is taking us.</p>
+            <p>Whatever your perspective, there's room for it here. We're not asking you to agree with us. We're asking you to help us understand.</p>
+            <p className="font-semibold text-primary">Your perspective matters.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5">
         <div className="rounded-lg bg-accent/50 p-8 md:p-12">
           <h2 className="text-2xl text-primary md:text-3xl">{open ? 'Submissions are open' : 'Submissions are not open yet'}</h2>
