@@ -1,0 +1,2 @@
+REVOKE ALL ON public.submissions, public.consent_records, public.audit_log, public.eligibility_attestations, public.research_export_items, public.research_exports, public.purpose_approvals, public.raw_training_authorizations, public.withdrawal_requests, public.research_annotations, public.app_settings, public.user_roles, public.current_consent FROM anon, PUBLIC;
+REVOKE INSERT, UPDATE, DELETE, TRUNCATE ON public.consent_versions, public.active_consent_version FROM anon, PUBLIC;

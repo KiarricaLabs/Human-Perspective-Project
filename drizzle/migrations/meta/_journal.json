@@ -1,0 +1,62 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795275521761,
+      "tag": "0000_phase2_4_core_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795275551180,
+      "tag": "0001_audio_storage_policies_and_test_rows",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795276806663,
+      "tag": "0002_revoke_anon_research_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1795277450295,
+      "tag": "0003_harden_function_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1795277987334,
+      "tag": "0004_exports_rpc_and_consent_revocation",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1795361948597,
+      "tag": "0005_participant_controls_and_safe_research_downloads",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1795402623154,
+      "tag": "0006_research_review_and_audio_access_hardening",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1795402697295,
+      "tag": "0007_participant_request_limits_and_export_guards",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+REVOKE ALL ON FUNCTION public.validate_export_item(), public.validate_purpose_approval(), public.validate_raw_auth(), public.validate_consent_record(), public.guard_submission_update(), public.block_mutation(), public.stamp_activation() FROM PUBLIC, anon, authenticated;
+ALTER FUNCTION public.consent_allows(public.consent_records, text) SET search_path = public;
