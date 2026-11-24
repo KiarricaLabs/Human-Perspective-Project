@@ -205,7 +205,7 @@ export function ContributionForm({ type, wording, mode, open, onSaved }: { type:
         else if (type === 'voice') append('description');
         else if (type === 'language') append('meaning');
         else if (type === 'ai_society') append('experiences');
-      }} />
+      }} onAudioFile={(f) => setFile(f)} />
     </form>
   );
 }

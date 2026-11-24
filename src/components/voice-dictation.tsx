@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-type Props = { onTranscript: (text: string) => void; label?: string };
+type Props = { onTranscript: (text: string) => void; onAudioFile?: (f: File) => void; label?: string };
 
-export function VoiceDictation({ onTranscript, label = "Dictate" }: Props) {
+export function VoiceDictation({ onTranscript, onAudioFile, label = "Dictate" }: Props) {
   const [supported, setSupported] = useState(false);
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [seconds, setSeconds] = useState(0);
   const recRef = useRef<any>(null);
   const timerRef = useRef<any>(null);
+  const mrRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
 
   useEffect(() => {
     const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -53,23 +55,40 @@ export function VoiceDictation({ onTranscript, label = "Dictate" }: Props) {
     );
   }
 
-  function toggle() {
+  async function toggle() {
     const rec = recRef.current;
     if (!rec) return;
     if (listening) {
       rec.stop();
+      try { mrRef.current?.stop(); } catch {}
       setListening(false);
       if (transcript.trim()) onTranscript(transcript.trim());
       setTranscript("");
     } else {
       setTranscript("");
-      try { rec.start(); setListening(true); } catch {}
+      chunksRef.current = [];
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mr = new MediaRecorder(stream);
+        mr.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data); };
+        mr.onstop = () => {
+          const blob = new Blob(chunksRef.current, { type: mr.mimeType || 'audio/webm' });
+          const file = new File([blob], `recording-${Date.now()}.webm`, { type: blob.type });
+          onAudioFile?.(file);
+          stream.getTracks().forEach((t) => t.stop());
+        };
+        mr.start();
+        mrRef.current = mr;
+        rec.start();
+        setListening(true);
+      } catch {}
     }
   }
 
   function save() {
     if (transcript.trim()) onTranscript(transcript.trim());
     try { recRef.current?.stop(); } catch {}
+    try { mrRef.current?.stop(); } catch {}
     setListening(false);
     setTranscript("");
   }
