@@ -56,7 +56,7 @@ function Donate() {
         </div>
         {err && <p className="mt-3 text-sm text-destructive">{err}</p>}
         <p className="mt-6 text-sm text-muted-foreground">
-          Secure checkout powered by Stripe. Add your Stripe keys to .env to enable.
+          Secure checkout powered by Stripe.
         </p>
         <Link to="/" className="mt-6 inline-block font-medium text-primary underline underline-offset-4">Back home</Link>
       </div>
